@@ -1,0 +1,2 @@
+echo "🔍 Running pre-commit hooks..."
+pnpx lint-staged
