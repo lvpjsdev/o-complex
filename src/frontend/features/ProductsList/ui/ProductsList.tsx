@@ -1,0 +1,76 @@
+'use client';
+
+import { Product } from '@/types';
+import { useEffect, useState, useRef, useCallback } from 'react';
+import { getProducts } from '../api';
+import { ProductItem } from './ProductItem';
+
+export const ProductsList = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(false);
+  const page = useRef(0);
+  const hasNextPage = useRef(false);
+  const initialized = useRef(false);
+
+  const getMoreProducts = useCallback(async () => {
+    console.log('getMoreProducts');
+    if (!hasNextPage || loading || !initialized.current) return;
+    setLoading(true);
+    const data = await getProducts(page.current + 1);
+    console.log(data);
+
+    setProducts((prevUsers) => [...prevUsers, ...data.data]);
+    hasNextPage.current = data.hasNextPage;
+    page.current = page.current + 1;
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (!initialized.current) {
+      initialized.current = true;
+      getMoreProducts();
+    }
+  }, [getMoreProducts]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const richLoadingPoint =
+        window.innerHeight +
+          Math.max(
+            window.pageYOffset,
+            document.documentElement.scrollTop,
+            document.body.scrollTop
+          ) >
+        document.documentElement.offsetHeight - 500;
+
+      console.log('ichLoadingPoint', richLoadingPoint);
+      console.log('hasNextPage.current', hasNextPage.current);
+      console.log('loading', loading);
+
+      if (richLoadingPoint && hasNextPage.current && !loading) {
+        console.log('BOOM!');
+
+        getMoreProducts();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loading, getMoreProducts]);
+
+  return (
+    <div className="flex flex-row flex-wrap justify-center gap-9">
+      {products.map(({ id, image_url, title, description, price }) => (
+        <ProductItem
+          key={id}
+          title={title}
+          imageUrl={image_url}
+          description={description}
+          price={price}
+        />
+      ))}
+
+      {loading && <div>Loading...</div>}
+    </div>
+  );
+};

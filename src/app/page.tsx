@@ -1,4 +1,4 @@
-import { ReviewList } from '@/frontend/features/ReviewsList';
+import { ProductsList } from '@/frontend/features/ProductsList';
 import { Title } from '@/frontend/ui/Title';
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
         <Title>тестовое задание</Title>
       </header>
       <main>
-        <ReviewList />
+        <ProductsList />
       </main>
     </div>
   );
