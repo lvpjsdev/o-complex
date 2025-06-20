@@ -13,11 +13,9 @@ export const ProductsList = () => {
   const initialized = useRef(false);
 
   const getMoreProducts = useCallback(async () => {
-    console.log('getMoreProducts');
     if (!hasNextPage || loading || !initialized.current) return;
     setLoading(true);
     const data = await getProducts(page.current + 1);
-    console.log(data);
 
     setProducts((prevUsers) => [...prevUsers, ...data.data]);
     hasNextPage.current = data.hasNextPage;
@@ -43,13 +41,7 @@ export const ProductsList = () => {
           ) >
         document.documentElement.offsetHeight - 500;
 
-      console.log('ichLoadingPoint', richLoadingPoint);
-      console.log('hasNextPage.current', hasNextPage.current);
-      console.log('loading', loading);
-
       if (richLoadingPoint && hasNextPage.current && !loading) {
-        console.log('BOOM!');
-
         getMoreProducts();
       }
     };

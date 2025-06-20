@@ -23,8 +23,6 @@ export async function GET(request: NextRequest) {
 
     const data: ComplexResponse<Product> = await response.json();
 
-    console.log(data);
-
     const { page, amount, total } = data;
 
     const responseData: ApiResponse<Product[]> = {
