@@ -3,7 +3,7 @@ import { createStore as baseCreateStore } from 'zustand/vanilla';
 
 export type State = {
   cart: {
-    items: { id: number; quantity: number }[];
+    items: { id: number; quantity: number; price: number }[];
     total: number;
   };
 };
@@ -32,12 +32,22 @@ export const createStore = (initState: State = defaultInitState) => {
         if (item) {
           item.quantity = quantity;
         } else {
-          state.cart.items.push({ id: product.id, quantity });
+          state.cart.items.push({
+            id: product.id,
+            quantity,
+            price: product.price,
+          });
         }
+
+        state.cart.total = state.cart.items.reduce((acc, item) => {
+          return acc + item.quantity * item.price;
+        }, 0);
 
         return {
           cart: {
             ...state.cart,
+            items: [...state.cart.items],
+            total: state.cart.total,
           },
         };
       }),

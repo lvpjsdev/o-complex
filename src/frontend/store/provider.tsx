@@ -26,7 +26,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   );
 };
 
-export const useCounterStore = <T,>(selector: (store: Store) => T): T => {
+export const useCartStore = <T,>(selector: (store: Store) => T): T => {
   const storeContext = useContext(StoreContext);
 
   if (!storeContext) {

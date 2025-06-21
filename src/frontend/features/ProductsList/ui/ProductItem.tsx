@@ -1,21 +1,15 @@
 import { FC } from 'react';
 import Image from 'next/image';
-import { Button } from '@/frontend/ui/Button';
 import { Card } from '@/frontend/ui/Card';
+import { Product } from '@/types';
+import { ToCartButton } from '../../ToCartButton';
 
 interface Props {
-  imageUrl: string;
-  title: string;
-  description: string;
-  price: number;
+  product: Product;
 }
 
-export const ProductItem: FC<Props> = ({
-  imageUrl,
-  title,
-  description,
-  price,
-}) => {
+export const ProductItem: FC<Props> = ({ product }) => {
+  const { image_url: imageUrl, title, description, price } = product || {};
   return (
     <Card width="300px" height="810px" className="flex flex-col">
       <Image
@@ -32,7 +26,7 @@ export const ProductItem: FC<Props> = ({
       </div>
       <div className="mt-auto mb-0 flex flex-1 flex-col justify-end">
         <p className="mb-2 mb-8 text-center text-4xl">цена: {price}₽</p>
-        <Button className="mx-auto">Купить</Button>
+        <ToCartButton className="mx-auto" product={product} key={product.id} />
       </div>
     </Card>
   );

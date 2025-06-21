@@ -52,14 +52,8 @@ export const ProductsList = () => {
 
   return (
     <div className="flex flex-row flex-wrap justify-center gap-9">
-      {products.map(({ id, image_url, title, description, price }) => (
-        <ProductItem
-          key={id}
-          title={title}
-          imageUrl={image_url}
-          description={description}
-          price={price}
-        />
+      {products.map((product) => (
+        <ProductItem key={product.id} product={product} />
       ))}
 
       {loading && <div>Loading...</div>}

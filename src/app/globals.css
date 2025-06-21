@@ -6,6 +6,12 @@
   --background-accent: #777777;
   --foreground: #f0f0f0;
   --foreground-secondary: #000000;
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 @theme inline {

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { StoreProvider } from '@/frontend/store/provider';
+import { StoreProvider } from '@/frontend/store';
 
 const interSans = Inter({
   variable: '--font-inter',
