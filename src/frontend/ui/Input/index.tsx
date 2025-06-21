@@ -1,19 +1,16 @@
-import { FC, InputHTMLAttributes } from 'react';
+import { FC, ForwardedRef, InputHTMLAttributes } from 'react';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
   // тут для простоты будем использовать any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: (value: any) => void;
-  type?: 'text' | 'number' | 'email' | 'password';
-  min?: number;
+  ref?: ForwardedRef<HTMLInputElement>;
 }
 
 export const Input: FC<Props> = ({
   value,
   onChange,
-  type = 'text',
-  min,
   className = '',
   ...props
 }) => {
@@ -28,10 +25,8 @@ export const Input: FC<Props> = ({
     <input
       {...props}
       className={`${defaultClasses} ${className}`}
-      type={type}
       value={value}
       onChange={handleChange}
-      min={min}
     />
   );
 };

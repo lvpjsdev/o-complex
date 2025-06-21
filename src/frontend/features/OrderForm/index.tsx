@@ -3,7 +3,7 @@
 import { useCartStore } from '@/frontend/store';
 import { Button } from '@/frontend/ui/Button';
 import { Card } from '@/frontend/ui/Card';
-import { Input } from '@/frontend/ui/Input';
+import { MaskedInput } from './MaskedInput';
 
 export const OrderForm = () => {
   const orderedProducts = useCartStore((state) => state.cart);
@@ -28,13 +28,7 @@ export const OrderForm = () => {
       </table>
       <div className="flex w-full flex-row gap-4">
         <div className="min-w-0 flex-1">
-          <Input
-            name="telephone"
-            value={telephone}
-            onChange={setTelephone}
-            className="w-full"
-            style={{ paddingLeft: '8px', paddingRight: '8px' }}
-          />
+          <MaskedInput value={telephone} onChange={setTelephone} />
         </div>
         <Button className="flex-shrink-0">заказать</Button>
       </div>
