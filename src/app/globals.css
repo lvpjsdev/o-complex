@@ -1,15 +1,27 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #222222;
+  --background-secondary: #d9d9d9;
+  --background-accent: #777777;
+  --foreground: #f0f0f0;
+  --foreground-secondary: #000000;
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-accent: var(--background-accent);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-foreground-secondary: var(--foreground-secondary);
+
+  --font-sans: var(--font-inter);
 }
 
 @media (prefers-color-scheme: dark) {
