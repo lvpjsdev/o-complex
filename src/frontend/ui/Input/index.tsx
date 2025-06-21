@@ -27,7 +27,7 @@ export const Input: FC<Props> = ({
   return (
     <input
       {...props}
-      className={className || defaultClasses}
+      className={`${defaultClasses} ${className}`}
       type={type}
       value={value}
       onChange={handleChange}

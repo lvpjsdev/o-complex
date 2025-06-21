@@ -1,3 +1,4 @@
+import { OrderForm } from '@/frontend/features/OrderForm';
 import { ProductsList } from '@/frontend/features/ProductsList';
 import { Title } from '@/frontend/ui/Title';
 
@@ -8,6 +9,7 @@ export default function Home() {
         <Title>тестовое задание</Title>
       </header>
       <main>
+        <OrderForm />
         <ProductsList />
       </main>
     </div>

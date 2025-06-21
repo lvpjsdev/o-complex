@@ -3,7 +3,7 @@ import { createStore as baseCreateStore } from 'zustand/vanilla';
 
 export type State = {
   cart: {
-    items: { id: number; quantity: number; price: number }[];
+    items: { id: number; title: string; quantity: number; price: number }[];
     total: number;
   };
 };
@@ -34,6 +34,7 @@ export const createStore = (initState: State = defaultInitState) => {
         } else {
           state.cart.items.push({
             id: product.id,
+            title: product.title,
             quantity,
             price: product.price,
           });

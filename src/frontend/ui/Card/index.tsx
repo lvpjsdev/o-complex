@@ -1,15 +1,9 @@
 import { FC, HTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
-interface Props extends HTMLAttributes<HTMLDivElement> {
-  width?: string;
-  height?: string;
-}
 
-export const Card: FC<Props> = ({
+export const Card: FC<HTMLAttributes<HTMLDivElement>> = ({
   children,
   className,
-  width = '470px',
-  height = '610px',
   ...props
 }) => {
   const mergedClassName = twMerge(
@@ -18,11 +12,7 @@ export const Card: FC<Props> = ({
   );
 
   return (
-    <div
-      className={mergedClassName}
-      style={{ width, height, maxWidth: width, maxHeight: height }}
-      {...props}
-    >
+    <div className={mergedClassName} {...props}>
       {children}
     </div>
   );
