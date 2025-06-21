@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useCartStore } from '@/frontend/store';
 import { Button } from '@/frontend/ui/Button';
 import { Card } from '@/frontend/ui/Card';
@@ -8,7 +7,8 @@ import { Input } from '@/frontend/ui/Input';
 
 export const OrderForm = () => {
   const orderedProducts = useCartStore((state) => state.cart);
-  const [telephone, setTelephone] = useState('');
+  const telephone = useCartStore((state) => state.telephone);
+  const setTelephone = useCartStore((state) => state.setTelephone);
 
   return (
     <Card className="w-full max-w-[708px]">
