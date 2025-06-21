@@ -22,7 +22,7 @@ export const Input: FC<Props> = ({
   };
 
   const defaultClasses =
-    'bg-background text-foreground rounded-2xl px-2 md:px-14 py-3 text-center text-4xl';
+    'bg-background text-foreground rounded-2xl px-2 md:px-4 py-3 text-center text-4xl';
 
   if (hasError) {
     className += ' border-red-500 border-2';

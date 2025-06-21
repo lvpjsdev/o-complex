@@ -8,7 +8,7 @@ export const Button: FC<HTMLAttributes<HTMLButtonElement>> = ({
 }) => {
   const mergedClassName = twMerge(
     className,
-    `bg-background text-foreground rounded-2xl pxxl py-3 text-4xl`
+    `bg-background text-foreground rounded-2xl px-4 py-3 text-4xl`
   );
 
   return (

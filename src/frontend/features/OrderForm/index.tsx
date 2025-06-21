@@ -22,14 +22,13 @@ export const OrderForm = () => {
       setHasError(true);
       return;
     }
-
     const res = await createOrder({
       phone,
       cart: orderedProducts.items.map(({ id, quantity }) => ({ id, quantity })),
     });
 
     if (res.success) {
-      toast.success('Заказ успешно оформлен');
+      toast.success(<p className="text-xl">Заказ успешно оформлен</p>);
       setTelephone('');
       clearCart();
     } else {
@@ -44,7 +43,7 @@ export const OrderForm = () => {
   return (
     <Card className="w-full max-w-[330px] p-2.5! md:max-w-[690px]">
       <h3 className="text-center text-4xl">Добавленные товары</h3>
-      <table className="mt-6 mb-2 w-full text-2xl">
+      <table className="mt-6 mb-2.5 w-full text-2xl">
         <tbody>
           {orderedProducts.items
             .filter(({ quantity }) => quantity)
