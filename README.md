@@ -1,24 +1,18 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Как запустить проект
 
-## Getting Started
+1. Установите зависимости:
 
-First, run the development server:
+```bash
+npm install
+```
+
+2. Запустите сервер разработки:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Откройте в браузере [http://localhost:3000](http://localhost:3000) или другой адрес указаный в терминале, чтобы увидеть результат.
 
 ## Learn More
 
@@ -33,4 +27,24 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Используемые технологии
+
+В проекте использовались следующие технологии:
+
+- **Next.js** — основной фреймворк
+- **Tailwind CSS** — для стилизации
+- **zustand** — для управления состоянием
+- **@react-input/mask** — для маски ввода номера телефона
+- **sonner** — для отображения уведомлений
+- **isomorphic-dompurify** — для санитаризации HTML
+- **husky** и **lint-staged** — для проверки кода перед коммитом (прекоммит-хуки)
+
+Так как в задании не было ограничений по использованию сторонних библиотек (кроме требования использовать Next.js), я посчитал, что это не противоречит условиям задачи.
+
+## Что можно улучшить
+
+[ ] Добавить валидацию запроса при оформлении заказа на стороне BFF (Backend for Frontend)
+
+[ ] Продолжить рефакторинг и декомпозицию сложных компонентов на UI, бизнес-логику и работу со стором
+
+[ ] Добавить предзагрузку на стороне сервера первой страницы товаров
