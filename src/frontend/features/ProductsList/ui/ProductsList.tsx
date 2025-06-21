@@ -1,54 +1,64 @@
 'use client';
 
 import { Product } from '@/types';
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getProducts } from '../api';
 import { ProductItem } from './ProductItem';
+import { Loader } from '@/frontend/ui/Loader';
+import { toast } from 'sonner';
 
 export const ProductsList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
-  const page = useRef(0);
-  const hasNextPage = useRef(false);
+  const page = useRef(1);
+  const hasNextPage = useRef(true);
   const initialized = useRef(false);
+  const isLoadingRef = useRef(false);
 
-  const getMoreProducts = useCallback(async () => {
-    if (!hasNextPage || loading || !initialized.current) return;
+  const getMoreProducts = async () => {
+    if (isLoadingRef.current || !hasNextPage.current) {
+      return;
+    }
+
+    isLoadingRef.current = true;
     setLoading(true);
-    const data = await getProducts(page.current + 1);
 
-    setProducts((prevUsers) => [...prevUsers, ...data.data]);
-    hasNextPage.current = data.hasNextPage;
-    page.current = page.current + 1;
-    setLoading(false);
-  }, []);
+    try {
+      const data = await getProducts(page.current);
+
+      setProducts((prevProducts) => [...prevProducts, ...data.data]);
+      hasNextPage.current = data.hasNextPage;
+      page.current = page.current + 1;
+    } catch (error) {
+      toast.error(
+        <p className="text-xl">{`Ошибка загрузки товаров: ${(error as Error).message}`}</p>
+      );
+    } finally {
+      isLoadingRef.current = false;
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (!initialized.current) {
       initialized.current = true;
       getMoreProducts();
     }
-  }, [getMoreProducts]);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      const richLoadingPoint =
-        window.innerHeight +
-          Math.max(
-            window.pageYOffset,
-            document.documentElement.scrollTop,
-            document.body.scrollTop
-          ) >
-        document.documentElement.offsetHeight - 500;
+      const scrollPosition = window.innerHeight + window.pageYOffset;
+      const documentHeight = document.documentElement.offsetHeight;
 
-      if (richLoadingPoint && hasNextPage.current && !loading) {
+      if (scrollPosition > documentHeight - 500) {
         getMoreProducts();
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [loading, getMoreProducts]);
+  }, []);
 
   return (
     <div className="flex flex-row flex-wrap justify-center gap-9">
@@ -56,7 +66,7 @@ export const ProductsList = () => {
         <ProductItem key={product.id} product={product} />
       ))}
 
-      {loading && <div>Loading...</div>}
+      {loading && <Loader />}
     </div>
   );
 };

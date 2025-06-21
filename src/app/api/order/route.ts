@@ -5,8 +5,6 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    console.log(body);
-
     //TODO: здесь конечно нужно сделать валидацию запроса
 
     const response = await fetch('http://o-complex.com:1337/order', {

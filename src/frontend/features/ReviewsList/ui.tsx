@@ -1,4 +1,4 @@
-import { Suspense, use } from 'react';
+import { use } from 'react';
 import { Review } from '../../../types';
 import { Card } from '@/frontend/ui/Card';
 import { reviewsPromise } from './api';
@@ -23,9 +23,5 @@ const List = ({ reviewsPromise }: Props) => {
 };
 
 export const ReviewList = () => {
-  return (
-    <Suspense fallback={<p>LOADING!!!</p>}>
-      <List reviewsPromise={reviewsPromise()} />
-    </Suspense>
-  );
+  return <List reviewsPromise={reviewsPromise()} />;
 };

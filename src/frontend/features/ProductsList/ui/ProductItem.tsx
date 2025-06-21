@@ -13,13 +13,11 @@ export const ProductItem: FC<Props> = ({ product }) => {
   return (
     <Card className="flex w-full max-w-[296px] flex-col p-2.5! md:h-[790px]">
       <Image
-        className="rounded-2xl"
+        className="rounded-2xl object-contain"
         src={imageUrl}
         alt={title}
         width={280}
         height={365}
-        layout="responsive"
-        objectFit="contain"
       />
       <div className="flex-1">
         <h3 className="my-3 text-center text-4xl">{title}</h3>
