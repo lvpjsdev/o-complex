@@ -11,7 +11,7 @@ interface Props {
 export const ProductItem: FC<Props> = ({ product }) => {
   const { image_url: imageUrl, title, description, price } = product || {};
   return (
-    <Card className="flex h-[790px] w-[296px] flex-col p-2.5!">
+    <Card className="flex w-full max-w-[296px] flex-col p-2.5! md:h-[790px]">
       <Image
         className="rounded-2xl"
         src={imageUrl}

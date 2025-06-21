@@ -1,4 +1,5 @@
 import { FC, ForwardedRef, InputHTMLAttributes } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
@@ -21,16 +22,18 @@ export const Input: FC<Props> = ({
   };
 
   const defaultClasses =
-    'bg-background text-foreground rounded-2xl px-14 py-3 text-center text-4xl';
+    'bg-background text-foreground rounded-2xl px-2 md:px-14 py-3 text-center text-4xl';
 
   if (hasError) {
     className += ' border-red-500 border-2';
   }
 
+  const mergedClasses = twMerge(defaultClasses, className);
+
   return (
     <input
       {...props}
-      className={`${defaultClasses} ${className}`}
+      className={mergedClasses}
       value={value}
       onChange={handleChange}
     />

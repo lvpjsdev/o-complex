@@ -13,7 +13,7 @@ const List = ({ reviewsPromise }: Props) => {
     <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-9">
       {review?.map(({ id, text }) => (
         <Card
-          className="min-h-[595px] max-w-[455px] min-w-[455px] text-2xl"
+          className="h-full w-full max-w-[455px] text-2xl md:min-h-[595px]"
           dangerouslySetInnerHTML={{ __html: text }}
           key={id}
         />

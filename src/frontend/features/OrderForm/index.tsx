@@ -42,15 +42,15 @@ export const OrderForm = () => {
   };
 
   return (
-    <Card className="w-[690px] p-2.5!">
-      <h3 className="text-4xl">Добавленные товары</h3>
+    <Card className="w-full max-w-[330px] p-2.5! md:max-w-[690px]">
+      <h3 className="text-center text-4xl">Добавленные товары</h3>
       <table className="mt-6 mb-2 w-full text-2xl">
         <tbody>
           {orderedProducts.items
             .filter(({ quantity }) => quantity)
             .map((order) => (
               <tr key={order.id}>
-                <td className="max-w-60 truncate pr-3">{order.title}</td>{' '}
+                <td className="max-w-40 truncate pr-3">{order.title}</td>
                 <td className="pl-3 whitespace-nowrap">x{order.quantity}</td>
                 <td className="pl-3 whitespace-nowrap">
                   {order.price * order.quantity}₽
@@ -59,8 +59,8 @@ export const OrderForm = () => {
             ))}
         </tbody>
       </table>
-      <div className="flex w-full flex-row gap-4">
-        <div className="min-w-[400px]">
+      <div className="flex w-full flex-col gap-4 md:flex-row">
+        <div className="">
           <MaskedInput
             value={telephone}
             onChange={setTelephone}
