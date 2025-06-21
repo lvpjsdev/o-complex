@@ -22,3 +22,16 @@ export type ApiResponse<T> = {
   hasNextPage: boolean;
   data: T;
 };
+
+export type OrderRequest = {
+  phone: string;
+  cart: {
+    id: number;
+    quantity: number;
+  }[];
+};
+
+export type OrderResponse = {
+  success: number;
+  error: string;
+};

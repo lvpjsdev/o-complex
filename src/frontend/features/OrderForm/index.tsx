@@ -4,11 +4,32 @@ import { useCartStore } from '@/frontend/store';
 import { Button } from '@/frontend/ui/Button';
 import { Card } from '@/frontend/ui/Card';
 import { MaskedInput } from './MaskedInput';
+import { useState } from 'react';
+import { createOrder } from './api';
 
 export const OrderForm = () => {
+  const [hasError, setHasError] = useState(false);
   const orderedProducts = useCartStore((state) => state.cart);
   const telephone = useCartStore((state) => state.telephone);
   const setTelephone = useCartStore((state) => state.setTelephone);
+
+  const handleOrder = () => {
+    const phone = telephone.replace(/[^\d]/g, '');
+
+    if (phone.length !== 11) {
+      setHasError(true);
+      return;
+    }
+
+    createOrder({
+      phone,
+      cart: orderedProducts.items.map(({ id, quantity }) => ({ id, quantity })),
+    });
+  };
+
+  const onBlur = () => {
+    setHasError(false);
+  };
 
   return (
     <Card className="w-full max-w-[708px]">
@@ -28,9 +49,16 @@ export const OrderForm = () => {
       </table>
       <div className="flex w-full flex-row gap-4">
         <div className="min-w-0 flex-1">
-          <MaskedInput value={telephone} onChange={setTelephone} />
+          <MaskedInput
+            value={telephone}
+            onChange={setTelephone}
+            hasError={hasError}
+            onBlur={onBlur}
+          />
         </div>
-        <Button className="flex-shrink-0">заказать</Button>
+        <Button className="flex-shrink-0" onClick={handleOrder}>
+          заказать
+        </Button>
       </div>
     </Card>
   );
