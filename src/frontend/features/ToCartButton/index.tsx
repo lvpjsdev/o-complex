@@ -25,9 +25,11 @@ export const ToCartButton: FC<Props> = ({ product, className = '' }) => {
   );
 
   return (
-    <div className={className}>
+    <div>
       {quantity === 0 && !active ? (
-        <Button onClick={() => onChange(1)}>купить</Button>
+        <Button className={className} onClick={() => onChange(1)}>
+          купить
+        </Button>
       ) : (
         <div>
           <div className="flex flex-row gap-2">

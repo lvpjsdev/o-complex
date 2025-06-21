@@ -20,7 +20,7 @@ const CustomInput = forwardRef<
       ref={_forwardedRef}
       value={value}
       onChange={handleChange}
-      className="w-full"
+      className="w-[400px]"
       style={{ paddingLeft: '8px', paddingRight: '8px' }}
       hasError={hasError}
       {...props}

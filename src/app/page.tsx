@@ -1,5 +1,6 @@
 import { OrderForm } from '@/frontend/features/OrderForm';
 import { ProductsList } from '@/frontend/features/ProductsList';
+import { ReviewList } from '@/frontend/features/ReviewsList';
 import { Title } from '@/frontend/ui/Title';
 
 export default function Home() {
@@ -8,8 +9,11 @@ export default function Home() {
       <header className="mb-[105px]">
         <Title>тестовое задание</Title>
       </header>
-      <main>
-        <OrderForm />
+      <main className="flex flex-col items-center">
+        <ReviewList />
+        <div className="pt-60 pb-12">
+          <OrderForm />
+        </div>
         <ProductsList />
       </main>
     </div>

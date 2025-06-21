@@ -10,9 +10,13 @@ interface Props {
 const List = ({ reviewsPromise }: Props) => {
   const review = use(reviewsPromise);
   return (
-    <div className="flex flex-row flex-wrap justify-center gap-5 md:gap-9">
+    <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-9">
       {review?.map(({ id, text }) => (
-        <Card dangerouslySetInnerHTML={{ __html: text }} key={id} />
+        <Card
+          className="min-h-[595px] max-w-[455px] min-w-[455px] text-2xl"
+          dangerouslySetInnerHTML={{ __html: text }}
+          key={id}
+        />
       ))}
     </div>
   );

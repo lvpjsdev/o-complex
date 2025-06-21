@@ -8,7 +8,7 @@ export const Card: FC<HTMLAttributes<HTMLDivElement>> = ({
 }) => {
   const mergedClassName = twMerge(
     className,
-    `bg-background-secondary text-foreground-secondary min-w-[333px] overflow-y-auto rounded-2xl px-5 py-5 md:px-7`
+    `bg-background-secondary text-foreground-secondary overflow-y-auto rounded-2xl px-5 py-5 md:px-7`
   );
 
   return (
