@@ -1,6 +1,8 @@
-import { OrderRequest } from '@/types';
+import { OrderRequest, OrderResponse } from '@/types';
 
-export const createOrder = async (order: OrderRequest) => {
+export const createOrder = async (
+  order: OrderRequest
+): Promise<OrderResponse> => {
   const response = await fetch('/api/order', {
     method: 'POST',
     headers: {

@@ -13,6 +13,7 @@ export type State = {
 export type Actions = {
   setToCart: (product: Product, quantity: number) => void;
   setTelephone: (telephone: string) => void;
+  clearCart: () => void;
 };
 
 export type Store = State & Actions;
@@ -64,6 +65,14 @@ export const createStore = (initState: State = defaultInitState) => {
           set((state) => ({
             ...state,
             telephone,
+          })),
+        clearCart: () =>
+          set((state) => ({
+            ...state,
+            cart: {
+              items: [],
+              total: 0,
+            },
           })),
       }),
       {

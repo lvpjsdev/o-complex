@@ -6,14 +6,16 @@ import { Card } from '@/frontend/ui/Card';
 import { MaskedInput } from './MaskedInput';
 import { useState } from 'react';
 import { createOrder } from './api';
+import { toast } from 'sonner';
 
 export const OrderForm = () => {
   const [hasError, setHasError] = useState(false);
   const orderedProducts = useCartStore((state) => state.cart);
   const telephone = useCartStore((state) => state.telephone);
   const setTelephone = useCartStore((state) => state.setTelephone);
+  const clearCart = useCartStore((state) => state.clearCart);
 
-  const handleOrder = () => {
+  const handleOrder = async () => {
     const phone = telephone.replace(/[^\d]/g, '');
 
     if (phone.length !== 11) {
@@ -21,10 +23,18 @@ export const OrderForm = () => {
       return;
     }
 
-    createOrder({
+    const res = await createOrder({
       phone,
       cart: orderedProducts.items.map(({ id, quantity }) => ({ id, quantity })),
     });
+
+    if (res.success) {
+      toast.success('Заказ успешно оформлен');
+      setTelephone('');
+      clearCart();
+    } else {
+      toast.error(res.error);
+    }
   };
 
   const onBlur = () => {
